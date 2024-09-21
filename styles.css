@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    background-image: url('https://media.licdn.com/dms/image/v2/D4E12AQGN2apEkIKD_w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1708716242256?e=1732147200&v=beta&t=nXWSz7IZwwrv1tmhIplQhSZxoLPOZ4_F4WuqpvmbjCg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: #FFD700; /* Gold color for the heading */
+    font-size: 2.5em; /* Larger font size */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+p {
+    color: #FF4500; /* OrangeRed color for the paragraph */
+    font-size: 1.2em; /* Slightly larger font size */
+    margin-bottom: 40px; /* Space below the paragraph */
+}
+
+form {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block; /* Keeps the form's width limited */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+form:hover {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
+}
+
+input[type="file"] {
+    margin: 20px;
+    padding: 10px; /* Added padding for better spacing */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.7); /* Light background with transparency */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+input[type="file"]:hover {
+    background-color: rgba(255, 255, 255, 0.9); /* Lighter background on hover */
+}
+
+button {
+    padding: 10px 20px; /* Padding for button */
+    font-size: 1em; /* Font size for button */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007bff; /* Blue background for button */
+    color: white; /* White text color */
+    cursor: pointer; /* Pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+h3 {
+    color: #FFD700; /* Gold color for prediction result */
+    margin-top: 20px; /* Space above the prediction result */
+}
