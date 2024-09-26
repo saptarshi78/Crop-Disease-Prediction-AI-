@@ -1,22 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartAI Crop Disease Tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <form id="uploadForm" enctype="multipart/form-data">
-        <h1>SmartAI Crop Disease Tracker</h1>
-        <p>Upload a photo of your crop to get a disease prediction.</p>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="/auth/google">Sign In with Google</a></li>
+            </ul>
+            <div class="search-bar">
+                <input type="text" placeholder="Search Products...">
+                <button type="submit">&#128269;</button>
+            </div>
+        </nav>
 
-        <input type="file" id="fileInput" accept="image/*" required>
-        <button type="submit">Submit</button>
+        <div class="content-wrapper">
+            <div class="left-section">
+                <h2>Empowering Farmers with Smart AI Crop Disease Tracker</h2>
+                <h1>Protect Your Crops with AI Disease Prediction</h1>
+                <p>Upload a photo of your crop to get an instant disease diagnosis using our advanced AI technology. Get actionable insights to ensure the best yield and healthier crops.</p>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" accept="image/*" required>
+                    <button type="submit">Submit</button>
+                </form>
+                <h3 id="predictionResult"></h3>
+            </div>
 
-        <h3 id="predictionResult"></h3>
-    </form>
+            <div class="right-section">
+                <div class="leaf-icons"></div>
+                <div class="dots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <script src="script.js"></script> <!-- Link to external JS file -->
+    <script src="script.js"></script>
 </body>
+
 </html>

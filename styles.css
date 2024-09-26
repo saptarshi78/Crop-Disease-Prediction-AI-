@@ -1,72 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border ;
+}
+
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 0;
-    background-image: url('https://media.licdn.com/dms/image/v2/D4E12AQGN2apEkIKD_w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1708716242256?e=1732147200&v=beta&t=nXWSz7IZwwrv1tmhIplQhSZxoLPOZ4_F4WuqpvmbjCg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    color: white;
+    background-color: #87b426; /* Light green background */
+}
+
+/* Container for the overall layout */
+.container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: 100%;
+    height: 100vh;
+}
+
+/* Navigation bar */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #87b426;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: rgb(249, 249, 249);
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.search-bar {
+    display: flex;
     align-items: center;
 }
 
-h1 {
-    color: #FFD700; /* Gold color for the heading */
-    font-size: 2.5em; /* Larger font size */
-    margin-bottom: 20px; /* Space below the heading */
+.search-bar input {
+    padding: 10px;
+    border: none;
+    border-radius: 115px;
+    background-color: #ffffff;
+    -webkit-border-radius: 115px;
+    -moz-border-radius: 115px;
+    -ms-border-radius: 115px;
+    -o-border-radius: 115px;
 }
 
-p {
-    color: #FFFFFF; /* OrangeRed color for the paragraph */
-    font-size: 1.2em; /* Slightly larger font size */
-    margin-bottom: 40px; /* Space below the paragraph */
+.search-bar button {
+    padding: 5px;
+    border: none;
+    width: 35px;
+    border-radius: 80px;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    -ms-border-radius: 80px;
+    -o-border-radius: 80px;
 }
 
-form {
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    padding: 20px;
-    border-radius: 10px;
-    display: inline-block; /* Keeps the form's width limited */
-    transition: background-color 0.3s ease; /* Smooth transition */
+/* Content wrapper to handle the split layout */
+.content-wrapper {
+    display: flex;
+    height: calc(100vh - 80px); /* Take the height of the navbar into account */
 }
 
-form:hover {
-    background-color: rgba(0, 0, 0, 0.7); /* Darker on hover */
+/* Left section with text and form */
+.left-section {
+    flex: 1;
+    padding: 50px;
+    background-color: #122102; /* Olive Green background */
+    color: #ffffff; /* Darker green for text */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
 }
 
-input[type="file"] {
-    margin: 20px;
-    padding: 10px; /* Added padding for better spacing */
-    border: none; /* Remove default border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: rgba(255, 255, 255, 0.7); /* Light background with transparency */
-    transition: background-color 0.3s ease; /* Smooth transition */
+.left-section h1 {
+    font-size: 2.5em;
+    line-height: 1.2;
+    color: #c0f492; /* Olive green for main heading */
 }
 
-input[type="file"]:hover {
-    background-color: rgba(255, 255, 255, 0.9); /* Lighter background on hover */
+.left-section h2 {
+    font-size: 1.5em;
+    color: #ffffff; /* Light green */
+}
+
+.left-section p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
 }
 
 button {
-    padding: 10px 20px; /* Padding for button */
-    font-size: 1em; /* Font size for button */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #007bff; /* Blue background for button */
-    color: white; /* White text color */
-    cursor: pointer; /* Pointer on hover */
-    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+    padding: 10px 15px;
+    width: 115px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #8ebf42;
+    /*Lightgreen*/color: white;
+    font-size: 1.1em;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #14d72e; /* Darker green */
 }
 
-h3 {
-    color: #FFD700; /* Gold color for prediction result */
-    margin-top: 20px; /* Space above the prediction result */
+/* Form styling */
+form {
+    display: flex;
+    width: 35%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input[type="file"] {
+    padding: 10px;
+    background-color: white;
+    color: #3a5337;
+    border-radius: 25px;
+    font-size: 1em;
+    border: none;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    -ms-border-radius: 25px;
+    -o-border-radius: 25px;
+}
+
+/* Right section with the image */
+.right-section {
+    flex: 1;
+    background-image: url('https://github.com/saptarshi78/Crop-Disease-Prediction-AI-/blob/main/advanced-geneediting-enhances-plant-resilience-reducing-chemical-dependency-agriculture_251376-5132.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: relative;
+    padding: 20px;
+}
+
+/* Leaf icons and dots */
+.leaf-icons {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.leaf-icon {
+    width: 50px;
+    margin-right: 10px;
+}
+
+.dots {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 5px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
 }
