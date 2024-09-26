@@ -1,0 +1,97 @@
+/* Background styling */
+body {
+    background-image: url('https://github.com/saptarshi78/Crop-Disease-Prediction-AI-/blob/main/advanced-geneediting-enhances-plant-resilience-reducing-chemical-dependency-agriculture_251376-5132.jpg?raw=true');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="password"]:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 10px rgba(0, 255, 0, 0.4);
+}
+
+/* Link styling */
+a {
+    color: #17a2b8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #138496;
+}
+
+/* Google Sign-In Button */
+#google-signin {
+    background-color: #db4437;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#google-signin:hover {
+    background-color: #c23321;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.4);
+}
