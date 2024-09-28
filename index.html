@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartAI Crop Disease Tracker</title>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',  // Default language
+                includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bg,my,ca,zh-CN,zh-TW,hr,cs,da,nl,en,et,fi,fr,gl,ka,de,el,gu,iw,hi,hu,is,id,ga,it,ja,jv,kn,kk,km,ko,ku,ky,lo,lv,lt,lb,mk,mg,ms,ml,mt,mi,mr,mn,ne,no,fa,pl,pt,pa,ro,ru,sm,gd,sr,st,si,sk,sl,es,su,sw,sv,tg,ta,tt,te,th,tr,uk,ur,uz,vi,cy,xh,yi,zu', // All supported languages
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
+
 <body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+
     <div class="container">
         <nav>
             <ul>
@@ -15,6 +32,7 @@
                 <li id="user-greeting"></li>
                 <li><a href="/auth/google">Sign In with Google</a></li>
             </ul>
+
             <div class="search-bar">
                 <input type="text" placeholder="Search Products...">
                 <button type="submit">&#128269;</button>
@@ -25,7 +43,7 @@
             <div class="left-section">
                 <h2>Empowering Farmers with Smart AI Crop Disease Tracker</h2>
                 <h1>Protect Your Crops with AI Disease Prediction</h1>
-                <p>Upload a photo of your crop to get an instant disease diagnosis using our advanced AI technology. Get actionable insights to ensure the best yield and healthier crops.</p>
+                <p id="text-to-read">Upload a photo of your crop to get an instant disease diagnosis using our advanced AI technology. Get actionable insights to ensure the best yield and healthier crops.</p>
                 <form id="uploadForm" enctype="multipart/form-data">
                     <input type="file" id="fileInput" accept="image/*" required>
                     <button type="submit">Submit</button>
@@ -44,7 +62,43 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-    
+    <!-- Text-to-Speech Script -->
+    <script type="text/javascript">
+        function speakText(text, lang = 'en') {
+            const synth = window.speechSynthesis;
+            const utterThis = new SpeechSynthesisUtterance(text);
+            utterThis.lang = lang;
+            synth.speak(utterThis);
+        }
+
+        // Language code mapping for supported text-to-speech languages
+        const langMap = {
+            'af': 'af-ZA', 'sq': 'sq-AL', 'ar': 'ar-SA', 'bn': 'bn-IN', 'bg': 'bg-BG', 'ca': 'ca-ES',
+            'zh-CN': 'zh-CN', 'zh-TW': 'zh-TW', 'hr': 'hr-HR', 'cs': 'cs-CZ', 'da': 'da-DK', 'nl': 'nl-NL',
+            'en': 'en-US', 'fi': 'fi-FI', 'fr': 'fr-FR', 'de': 'de-DE', 'el': 'el-GR', 'hi': 'hi-IN',
+            'hu': 'hu-HU', 'id': 'id-ID', 'it': 'it-IT', 'ja': 'ja-JP', 'ko': 'ko-KR', 'lv': 'lv-LV',
+            'lt': 'lt-LT', 'no': 'no-NO', 'pl': 'pl-PL', 'pt': 'pt-PT', 'pt-BR': 'pt-BR', 'ro': 'ro-RO',
+            'ru': 'ru-RU', 'sk': 'sk-SK', 'sl': 'sl-SI', 'es': 'es-ES', 'sv': 'sv-SE', 'th': 'th-TH',
+            'tr': 'tr-TR', 'uk': 'uk-UA', 'vi': 'vi-VN'
+        };
+
+        // Automatically trigger text-to-speech after translation
+        function autoSpeakText() {
+            const selectedText = document.getElementById('text-to-read').innerText;
+            const langCode = document.querySelector('.goog-te-combo').value;
+            const speechLang = langMap[langCode] || 'en-US'; // Fallback to English if not found
+            speakText(selectedText, speechLang);
+        }
+
+        // Add event listener to trigger speech after language change
+        window.onload = function () {
+            const googleTranslateDropDown = document.querySelector('.goog-te-combo');
+            if (googleTranslateDropDown) {
+                googleTranslateDropDown.addEventListener('change', autoSpeakText);
+            }
+        };
+    </script>
+
 </body>
+
 </html>
