@@ -1,4 +1,3 @@
-# train.py
 import os
 import torch
 import torchvision.transforms as transforms
@@ -6,11 +5,11 @@ from torchvision import datasets
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch.optim as optim
-from model import SimpleCNN  # Make sure your model architecture is defined here
+from model import SimpleCNN  # Ensure your model architecture is defined here
 
 # Directories
-train_dir = os.path.join('D:', 'Crop', 'New Plant Diseases Dataset(Augmented', 'New Plant Diseases Dataset(Augmented', 'train')  # Adjust the path to your training data
-val_dir = os.path.join('D:', 'Crop', 'New Plant Diseases Dataset(Augmented', 'New Plant Diseases Dataset(Augmented', 'valid')     # Adjust the path to your validation data
+train_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'train')  # Adjusted the path to your training data
+val_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'valid')     # Adjusted the path to your validation data
 
 # Image transformations
 transform = transforms.Compose([

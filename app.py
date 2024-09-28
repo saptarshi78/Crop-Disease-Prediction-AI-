@@ -1,4 +1,3 @@
-# app.py
 import os
 import torch
 import torchvision.transforms as transforms
@@ -9,8 +8,8 @@ import torch.optim as optim
 from model import SimpleCNN
 
 # Directories
-train_dir = os.path.join('data', 'train')  # Path to training data
-val_dir = os.path.join('data', 'valid')     # Path to validation data
+train_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'train')  # Path to training data
+val_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'valid')     # Path to validation data
 
 # Image transformations
 transform = transforms.Compose([

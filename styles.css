@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border ;
+    box-sizing: border-box; /* Corrected this to box-sizing: border-box */
 }
 
 body {
@@ -42,6 +42,7 @@ nav ul li a {
     font-size: 1.2em;
 }
 
+/* Search Bar */
 .search-bar {
     display: flex;
     align-items: center;
@@ -52,30 +53,21 @@ nav ul li a {
     border: none;
     border-radius: 115px;
     background-color: #ffffff;
-    -webkit-border-radius: 115px;
-    -moz-border-radius: 115px;
-    -ms-border-radius: 115px;
-    -o-border-radius: 115px;
 }
 
 .search-bar button {
-    padding: 5px;
+    padding: 10px;
     border: none;
-    width: 35px;
-    border-radius: 80px;
+    border-radius: 50px;
     cursor: pointer;
     background-color: rgb(255, 255, 255);
-    border-radius: 50px;
-    -webkit-border-radius: 80px;
-    -moz-border-radius: 80px;
-    -ms-border-radius: 80px;
-    -o-border-radius: 80px;
 }
 
 /* Content wrapper to handle the split layout */
 .content-wrapper {
     display: flex;
     height: calc(100vh - 80px); /* Take the height of the navbar into account */
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
 
 /* Left section with text and form */
@@ -107,6 +99,7 @@ nav ul li a {
     max-width: 500px;
 }
 
+/* Button Group */
 .button-group {
     display: flex;
     gap: 10px;
@@ -118,13 +111,9 @@ button {
     border: none;
     border-radius: 50px;
     cursor: pointer;
-    background-color: #8ebf42;
-    /*Lightgreen*/color: white;
+    background-color: #8ebf42; /* Light green */
+    color: white;
     font-size: 1.1em;
-    -webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    -ms-border-radius: 50px;
-    -o-border-radius: 50px;
 }
 
 button:hover {
@@ -134,7 +123,8 @@ button:hover {
 /* Form styling */
 form {
     display: flex;
-    width: 35%;
+    width: 100%; /* Adjusted to 100% for mobile friendliness */
+    max-width: 400px; /* Added max-width for better layout */
     flex-direction: column;
     gap: 10px;
 }
@@ -146,10 +136,6 @@ input[type="file"] {
     border-radius: 25px;
     font-size: 1em;
     border: none;
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    -ms-border-radius: 25px;
-    -o-border-radius: 25px;
 }
 
 /* Right section with the image */
@@ -190,4 +176,42 @@ input[type="file"] {
     height: 10px;
     background-color: white;
     border-radius: 50%;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack navigation items vertically */
+        gap: 10px; /* Reduced gap for smaller screens */
+    }
+
+    .search-bar {
+        flex-direction: column; /* Stack search bar elements */
+        gap: 5px; /* Gap between input and button */
+    }
+
+    .left-section {
+        padding: 20px; /* Reduced padding for smaller screens */
+    }
+
+    .left-section h1 {
+        font-size: 2em; /* Smaller heading size */
+    }
+
+    .left-section h2 {
+        font-size: 1.2em; /* Smaller subheading size */
+    }
+
+    .left-section p {
+        font-size: 1em; /* Smaller paragraph size */
+    }
+
+    .right-section {
+        padding: 10px; /* Reduced padding */
+    }
+
+    /* Make the button group stack vertically on mobile */
+    .button-group {
+        flex-direction: column;
+    }
 }
