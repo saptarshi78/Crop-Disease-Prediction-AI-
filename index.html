@@ -18,6 +18,53 @@
         }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Speech Recognition API -->
+    <script>
+        let recognition;
+        let isListening = false;
+
+        function startRecognition() {
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Your browser does not support speech recognition. Please use Google Chrome.");
+                return;
+            }
+
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US'; // Set language for recognition
+
+            recognition.onstart = function () {
+                isListening = true;
+                console.log('Speech recognition started');
+            };
+
+            recognition.onresult = function (event) {
+                const transcript = event.results[0][0].transcript;
+                document.querySelector('.search-bar input').value = transcript; // Populate input field
+                stopRecognition(); // Stop recognition after getting result
+            };
+
+            recognition.onend = function () {
+                isListening = false;
+                console.log('Speech recognition ended');
+            };
+
+            recognition.onerror = function (event) {
+                console.error('Speech recognition error:', event.error);
+                stopRecognition();
+            };
+
+            recognition.start();
+        }
+
+        function stopRecognition() {
+            if (isListening) {
+                recognition.stop();
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -35,6 +82,7 @@
 
             <div class="search-bar">
                 <input type="text" placeholder="Search Products...">
+                <button type="button" onclick="startRecognition()">🎤</button> <!-- Speech to Text Button -->
                 <button type="submit">&#128269;</button>
             </div>
         </nav>
@@ -70,7 +118,7 @@
             utterThis.lang = lang;
 
             // Error handling
-            utterThis.onerror = function(event) {
+            utterThis.onerror = function (event) {
                 console.error('Speech synthesis error:', event.error);
             };
 
@@ -96,9 +144,9 @@
         }
 
         // Log available voices
-        window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.onvoiceschanged = function () {
             const voices = window.speechSynthesis.getVoices();
-            voices.forEach(function(voice) {
+            voices.forEach(function (voice) {
                 console.log(`${voice.name} (${voice.lang})`);
             });
         };
@@ -144,41 +192,12 @@
                 return 'ja'; // Japanese
             } else if (/[\u0B80-\u0BFF]/.test(text)) {
                 return 'ta'; // Tamil
-            } else if (/[\u0C80-\u0CFF]/.test(text)) {
+            } else if (/[\u0C00-\u0C7F]/.test(text)) {
                 return 'te'; // Telugu
-            } else if (/[\u0D00-\u0D7F]/.test(text)) {
-                return 'si'; // Sinhala
-            } else if (/[\u0530-\u058F]/.test(text)) {
-                return 'hy'; // Armenian
-            } else if (/[\u0400-\u04FF]/.test(text)) {
-                return 'ru'; // Russian
-            } else if (/[\u00C0-\u00FF]/.test(text)) {
-                return 'fr'; // French
-            } else if (/[\u1E00-\u1EFF]/.test(text)) {
-                return 'pt'; // Portuguese
-            } else if (/[\u0370-\u03FF]/.test(text)) {
-                return 'el'; // Greek
-            } else if (/[\u20AC]/.test(text)) {
-                return 'nl'; // Dutch (detected via Euro symbol, may not be the best method)
-            } else if (/[\u1780-\u17FF]/.test(text)) {
-                return 'km'; // Khmer
-            } else if (/[\uE400-\uE7FF]/.test(text)) {
-                return 'vi'; // Vietnamese
-            } else if (/[\u0D80-\u0DFF]/.test(text)) {
-                return 'ml'; // Malayalam
-            } else if (/[\uA800-\uA8FF]/.test(text)) {
-                return 'my'; // Myanmar (Burmese)
-            } else if (/[\uD800-\uDBFF][\uDC00-\uDFFF]/.test(text)) {
-                return 'ja'; // Japanese (for emoji and other complex scripts)
-            } else if (/[\u1100-\u115F]/.test(text)) {
-                return 'ko'; // Korean (Hangul)
             }
-            // Add more language detections as needed
             return 'en'; // Default to English
         }
-        
     </script>
-
 </body>
 
 </html>
