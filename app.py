@@ -7,9 +7,10 @@ import torch.nn as nn
 import torch.optim as optim
 from model import SimpleCNN
 
-# Directories
-train_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'train')  # Path to training data
-val_dir = os.path.join('D:', 'git2', 'Crop-Disease-Prediction-AI-', 'New Plant Diseases Dataset(Augmented)', 'New Plant Diseases Dataset(Augmented)', 'valid')     # Path to validation data
+# Corrected paths with proper escape characters
+train_dir = os.path.join('D:\\git2\\Crop-Disease-Prediction-AI-\\New Plant Diseases Dataset(Augmented)\\New Plant Diseases Dataset(Augmented)\\train')
+val_dir = os.path.join('D:\\git2\\Crop-Disease-Prediction-AI-\\New Plant Diseases Dataset(Augmented)\\New Plant Diseases Dataset(Augmented)\\valid')
+
 
 # Image transformations
 transform = transforms.Compose([
