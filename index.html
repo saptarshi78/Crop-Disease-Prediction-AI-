@@ -73,13 +73,10 @@
 
         // Language code mapping for supported text-to-speech languages
         const langMap = {
-            'af': 'af-ZA', 'sq': 'sq-AL', 'ar': 'ar-SA', 'bn': 'bn-IN', 'bg': 'bg-BG', 'ca': 'ca-ES',
-            'zh-CN': 'zh-CN', 'zh-TW': 'zh-TW', 'hr': 'hr-HR', 'cs': 'cs-CZ', 'da': 'da-DK', 'nl': 'nl-NL',
-            'en': 'en-US', 'fi': 'fi-FI', 'fr': 'fr-FR', 'de': 'de-DE', 'el': 'el-GR', 'hi': 'hi-IN',
-            'hu': 'hu-HU', 'id': 'id-ID', 'it': 'it-IT', 'ja': 'ja-JP', 'ko': 'ko-KR', 'lv': 'lv-LV',
-            'lt': 'lt-LT', 'no': 'no-NO', 'pl': 'pl-PL', 'pt': 'pt-PT', 'pt-BR': 'pt-BR', 'ro': 'ro-RO',
-            'ru': 'ru-RU', 'sk': 'sk-SK', 'sl': 'sl-SI', 'es': 'es-ES', 'sv': 'sv-SE', 'th': 'th-TH',
-            'tr': 'tr-TR', 'uk': 'uk-UA', 'vi': 'vi-VN'
+            'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES', 'de': 'de-DE', 'hi': 'hi-IN', 'ar': 'ar-SA',
+            'it': 'it-IT', 'ja': 'ja-JP', 'ko': 'ko-KR', 'ru': 'ru-RU', 'zh-CN': 'zh-CN', 'pt': 'pt-PT',
+            'nl': 'nl-NL', 'pl': 'pl-PL', 'sv': 'sv-SE', 'tr': 'tr-TR', 'uk': 'uk-UA'
+            // You can add more mappings based on available Web Speech API voices.
         };
 
         // Automatically trigger text-to-speech after translation
@@ -96,6 +93,16 @@
             if (googleTranslateDropDown) {
                 googleTranslateDropDown.addEventListener('change', autoSpeakText);
             }
+
+            // Event listener for text selection
+            document.addEventListener('mouseup', function () {
+                const selectedText = window.getSelection().toString();  // Get the selected text
+                if (selectedText) {
+                    const langCode = document.querySelector('.goog-te-combo').value;  // Get the selected language code
+                    const speechLang = langMap[langCode] || 'en-US';  // Map the language code to a TTS voice, default to 'en-US'
+                    speakText(selectedText, speechLang);  // Speak the selected text
+                }
+            });
         };
     </script>
 
