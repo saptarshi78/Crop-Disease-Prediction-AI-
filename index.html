@@ -69,6 +69,11 @@
             const utterThis = new SpeechSynthesisUtterance(text);
             utterThis.lang = lang;
 
+            // Error handling
+            utterThis.onerror = function(event) {
+                console.error('Speech synthesis error:', event.error);
+            };
+
             console.log(`Speaking text: "${text}" in language: ${lang}`);  // Debugging log
             synth.speak(utterThis);
         }
@@ -77,8 +82,9 @@
         const langMap = {
             'en': 'en-US', 'fr': 'fr-FR', 'es': 'es-ES', 'de': 'de-DE', 'hi': 'hi-IN', 'ar': 'ar-SA',
             'it': 'it-IT', 'ja': 'ja-JP', 'ko': 'ko-KR', 'ru': 'ru-RU', 'zh-CN': 'zh-CN', 'pt': 'pt-PT',
-            'nl': 'nl-NL', 'pl': 'pl-PL', 'sv': 'sv-SE', 'tr': 'tr-TR', 'uk': 'uk-UA'
-            // You can add more mappings based on available Web Speech API voices.
+            'nl': 'nl-NL', 'pl': 'pl-PL', 'sv': 'sv-SE', 'tr': 'tr-TR', 'uk': 'uk-UA',
+            'bn': 'bn-BD', 'ta': 'ta-IN', 'te': 'te-IN', 'si': 'si-LK', 'hy': 'hy-AM', 
+            'ml': 'ml-IN', 'km': 'km-KH', 'vi': 'vi-VN', 'my': 'my-MM', // Add more languages as needed
         };
 
         // Automatically trigger text-to-speech after translation
@@ -88,6 +94,14 @@
             const speechLang = langMap[langCode] || 'en-US'; // Fallback to English if not found
             speakText(selectedText, speechLang);
         }
+
+        // Log available voices
+        window.speechSynthesis.onvoiceschanged = function() {
+            const voices = window.speechSynthesis.getVoices();
+            voices.forEach(function(voice) {
+                console.log(`${voice.name} (${voice.lang})`);
+            });
+        };
 
         // Add event listener to trigger speech after language change
         window.onload = function () {
@@ -103,11 +117,66 @@
                 if (selectedText) {
                     const langCode = googleTranslateDropDown ? googleTranslateDropDown.value : 'en';  // Get the selected language code
                     const speechLang = langMap[langCode] || 'en-US';  // Map the language code to a TTS voice, default to 'en-US'
-                    console.log(`Language code for TTS: ${speechLang}`);  // Debugging log
-                    speakText(selectedText, speechLang);  // Speak the selected text
+
+                    // Check if the selected text's language is supported
+                    const detectedLang = detectLanguage(selectedText);
+                    const finalLang = langMap[detectedLang] || speechLang; // Use detected language if available
+
+                    console.log(`Language code for TTS: ${finalLang}`);  // Debugging log
+                    speakText(selectedText, finalLang);  // Speak the selected text
                 }
             });
         };
+
+        // Function to detect the language of the selected text
+        function detectLanguage(text) {
+            if (/[\u0900-\u097F]/.test(text)) {
+                return 'hi'; // Hindi
+            } else if (/[\u0980-\u09FF]/.test(text)) {
+                return 'bn'; // Bengali
+            } else if (/[\u4E00-\u9FFF]/.test(text)) {
+                return 'zh'; // Chinese
+            } else if (/[\u0600-\u06FF]/.test(text)) {
+                return 'ar'; // Arabic
+            } else if (/[\uAC00-\uD7AF]/.test(text)) {
+                return 'ko'; // Korean
+            } else if (/[\u3040-\u309F\u30A0-\u30FF]/.test(text)) {
+                return 'ja'; // Japanese
+            } else if (/[\u0B80-\u0BFF]/.test(text)) {
+                return 'ta'; // Tamil
+            } else if (/[\u0C80-\u0CFF]/.test(text)) {
+                return 'te'; // Telugu
+            } else if (/[\u0D00-\u0D7F]/.test(text)) {
+                return 'si'; // Sinhala
+            } else if (/[\u0530-\u058F]/.test(text)) {
+                return 'hy'; // Armenian
+            } else if (/[\u0400-\u04FF]/.test(text)) {
+                return 'ru'; // Russian
+            } else if (/[\u00C0-\u00FF]/.test(text)) {
+                return 'fr'; // French
+            } else if (/[\u1E00-\u1EFF]/.test(text)) {
+                return 'pt'; // Portuguese
+            } else if (/[\u0370-\u03FF]/.test(text)) {
+                return 'el'; // Greek
+            } else if (/[\u20AC]/.test(text)) {
+                return 'nl'; // Dutch (detected via Euro symbol, may not be the best method)
+            } else if (/[\u1780-\u17FF]/.test(text)) {
+                return 'km'; // Khmer
+            } else if (/[\uE400-\uE7FF]/.test(text)) {
+                return 'vi'; // Vietnamese
+            } else if (/[\u0D80-\u0DFF]/.test(text)) {
+                return 'ml'; // Malayalam
+            } else if (/[\uA800-\uA8FF]/.test(text)) {
+                return 'my'; // Myanmar (Burmese)
+            } else if (/[\uD800-\uDBFF][\uDC00-\uDFFF]/.test(text)) {
+                return 'ja'; // Japanese (for emoji and other complex scripts)
+            } else if (/[\u1100-\u115F]/.test(text)) {
+                return 'ko'; // Korean (Hangul)
+            }
+            // Add more language detections as needed
+            return 'en'; // Default to English
+        }
+        
     </script>
 
 </body>
