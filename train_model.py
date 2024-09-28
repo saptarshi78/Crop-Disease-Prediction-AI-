@@ -1,4 +1,4 @@
-# app.py
+# train.py
 import os
 import torch
 import torchvision.transforms as transforms
@@ -6,11 +6,11 @@ from torchvision import datasets
 from torch.utils.data import DataLoader
 import torch.nn as nn
 import torch.optim as optim
-from model import SimpleCNN
+from model import SimpleCNN  # Make sure your model architecture is defined here
 
 # Directories
-train_dir = os.path.join('data', 'train')  # Path to training data
-val_dir = os.path.join('data', 'valid')     # Path to validation data
+train_dir = os.path.join('D:', 'Crop', 'New Plant Diseases Dataset(Augmented', 'New Plant Diseases Dataset(Augmented', 'train')  # Adjust the path to your training data
+val_dir = os.path.join('D:', 'Crop', 'New Plant Diseases Dataset(Augmented', 'New Plant Diseases Dataset(Augmented', 'valid')     # Adjust the path to your validation data
 
 # Image transformations
 transform = transforms.Compose([
@@ -26,7 +26,7 @@ train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False)
 
 # Initialize model, loss function, and optimizer
-model = SimpleCNN(num_classes=len(train_dataset.classes))
+model = SimpleCNN(num_classes=len(train_dataset.classes))  # Adjust based on your dataset
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -44,4 +44,4 @@ for epoch in range(num_epochs):
     print(f'Epoch [{epoch + 1}/{num_epochs}], Loss: {loss.item():.4f}')
 
 # Save the model
-torch.save(model.state_dict(), 'crop_disease_model.pth')
+torch.save(model.state_dict(), 'crop_disease_model.pth')  # Saves the trained model
