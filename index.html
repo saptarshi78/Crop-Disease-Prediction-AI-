@@ -68,6 +68,8 @@
             const synth = window.speechSynthesis;
             const utterThis = new SpeechSynthesisUtterance(text);
             utterThis.lang = lang;
+
+            console.log(`Speaking text: "${text}" in language: ${lang}`);  // Debugging log
             synth.speak(utterThis);
         }
 
@@ -97,9 +99,11 @@
             // Event listener for text selection
             document.addEventListener('mouseup', function () {
                 const selectedText = window.getSelection().toString();  // Get the selected text
+                console.log(`Selected text: "${selectedText}"`);  // Debugging log
                 if (selectedText) {
-                    const langCode = document.querySelector('.goog-te-combo').value;  // Get the selected language code
+                    const langCode = googleTranslateDropDown ? googleTranslateDropDown.value : 'en';  // Get the selected language code
                     const speechLang = langMap[langCode] || 'en-US';  // Map the language code to a TTS voice, default to 'en-US'
+                    console.log(`Language code for TTS: ${speechLang}`);  // Debugging log
                     speakText(selectedText, speechLang);  // Speak the selected text
                 }
             });
